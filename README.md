@@ -16,15 +16,15 @@ This Docker container fetches the public IP address of the host it is running on
 
 ## Environment Variables:
 
-| Environment Variable         | Description                                                                                             | Required  | Default   |
-|------------------------------|---------------------------------------------------------------------------------------------------------|-----------|-----------|
-| **`CLOUDFLARE_API_KEY`**      | Your Cloudflare API key.                                                                                | Yes       | None      |
-| **`CLOUDFLARE_ACCOUNT_ID`**   | The account ID from your Cloudflare dashboard.                                                          | Yes       | None      |
-| **`CLOUDFLARE_GROUP_ID`**     | The Access Group ID from your Zero Trust dashboard.                                                     | Yes       | None      |
-| **`IP_RANGE`**                | A comma-separated list of IPs to whitelist (optional, public IP will always be added if `IP_LOOKUP_ENABLED` is true). | No        | None      |
-| **`IP_LOOKUP_ENABLED`**       | Set to `true` (default) or `false` to control whether the public IP lookup is performed.                | No        | `true`    |
-| **`IP_FROM_DNS`**             | A comma-separated list of DNS records to resolve to IPs and whitelist (optional).                       | No        | None      |
-| **`UPDATE_INTERVAL_MINUTES`** | Time in minutes between updates. If not set, the script will run once and then stop.                    | No        | None      |
+| Environment Variable         | Description                                                                              | Required  | Default   |
+|------------------------------|------------------------------------------------------------------------------------------|-----------|-----------|
+| **`CLOUDFLARE_API_KEY`**      | Your Cloudflare API key.                                                                 | Yes       | None      |
+| **`CLOUDFLARE_ACCOUNT_ID`**   | The Account ID from your Cloudflare dashboard.                                           | Yes       | None      |
+| **`CLOUDFLARE_GROUP_ID`**     | The Access Group ID from your Zero Trust dashboard.                                      | Yes       | None      |
+| **`IP_RANGE`**                | A comma-separated list of IPs to whitelist                                               | No        | None      |
+| **`IP_LOOKUP_ENABLED`**       | Set to `true` (default) or `false` to control whether the public IP lookup is performed. | No        | `true`    |
+| **`IP_FROM_DNS`**             | A comma-separated list of DNS records to resolve to IPs and whitelist.                   | No        | None      |
+| **`UPDATE_INTERVAL_MINUTES`** | Time in minutes between updates. If not set, the script will run once and then stop.     | No        | None      |
 
 ## Running the Docker Container:
 
@@ -57,6 +57,8 @@ services:
       - CLOUDFLARE_ACCOUNT_ID=your_account_id
       - CLOUDFLARE_GROUP_ID=your_group_id
       - IP_RANGE=127.0.0.1,10.0.0.0/24
+      - IP_LOOKUP_ENABLED=true
+      - IP_FROM_DNS="example.com,github.com"
       - UPDATE_INTERVAL_MINUTES=15
     restart: always
 ```
