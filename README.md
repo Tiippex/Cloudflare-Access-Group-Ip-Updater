@@ -58,7 +58,7 @@ services:
       - CLOUDFLARE_GROUP_ID=your_group_id
       - IP_RANGE=127.0.0.1,10.0.0.0/24
       - IP_LOOKUP_ENABLED=true
-      - IP_FROM_DNS="example.com,github.com"
+      - IP_FROM_DNS=example.com,github.com
       - UPDATE_INTERVAL_MINUTES=15
     restart: always
 ```
